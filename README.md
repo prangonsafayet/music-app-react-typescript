@@ -12,9 +12,18 @@ Screenshots:
 
 <br>
 <p align="center">
+  <p>Lightmode Desktop</p>
   <img  src="screenshots/Lightmode_desktop.png">
+  <br/>
+  <p>Library Drawer</p>
   <img  src="screenshots/Library_drawer.png">
+  <br/>
+  <p>Darkmode Desktop</p>
   <img  src="screenshots/Darkmode_desktop.png">
+  <br/>
+  <p>Darkmode Mobile</p>
   <img  src="screenshots/darkmode_mobile.png">
+  <br/>
+  <p>Library Drawer Mobile</p>
   <img  src="screenshots/library_drawer_mobile.png">
 </p>
