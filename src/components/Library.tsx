@@ -11,7 +11,9 @@ interface LibraryInterface {
   isPlaying: boolean;
   setSongs: (setSongs: SongInterface[]) => void;
   libraryStatus: boolean;
+  setLibraryStatus: (setLibraryStatus: boolean) => void;
   backdropStatus: boolean;
+  setBackdropStatus: (setBackdropStatus: boolean) => void;
   setIsPlaying: (setIsPlaying: boolean) => void;
   songInfo: SongInfo;
   setSongInfo: (songInfo: SongInfo) => void;
@@ -26,18 +28,27 @@ const Library: React.FC<LibraryInterface> = ({
   isPlaying,
   setSongs,
   libraryStatus,
+  setLibraryStatus,
   backdropStatus,
+  setBackdropStatus,
   setIsPlaying,
   songInfo,
   setSongInfo,
   isDarkMode,
-  setIsDarkMode
+  setIsDarkMode,
 }) => {
+  const closeLibraryHandler = () => {
+    setLibraryStatus(!libraryStatus);
+    setBackdropStatus(!backdropStatus);
+  };
   const content = (
     <React.Fragment>
-      
-      <div className={`library${libraryStatus ? " active-library" : ""}${isDarkMode ? " dark-mode" : ""}`}>
-        <h2>Library</h2>
+      <div
+        className={`library${libraryStatus ? " active-library" : ""}${
+          isDarkMode ? " dark-mode" : ""
+        }`}
+      >
+        <h2 onClick={closeLibraryHandler}>Library</h2>
         <div className="library-songs">
           {songs.map((song: any) => (
             <LibrarySong

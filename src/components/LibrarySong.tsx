@@ -12,6 +12,7 @@ interface LibrarySongInterface {
   setIsPlaying: (setIsPlaying: boolean) => void;
   songInfo: SongInfo;
   setSongInfo: (songInfo: SongInfo) => void;
+  
 }
 
 const LibrarySong: React.FC<LibrarySongInterface> = ({

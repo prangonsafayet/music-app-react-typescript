@@ -65,7 +65,9 @@ function App() {
         setCurrentSong={setCurrentSong}
         isPlaying={isPlaying}
         libraryStatus={libraryStatus}
+        setLibraryStatus={setLibraryStatus}
         backdropStatus={backdropStatus}
+        setBackdropStatus={setBackdropStatus}
         setIsPlaying={setIsPlaying}
         songInfo={songInfo}
         setSongInfo={setSongInfo}
