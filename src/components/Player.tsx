@@ -77,12 +77,17 @@ const Player: React.FC<PlayerInterface> = ({
       activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
     }
     if (direction === "skip-back") {
-      if ((currentIndex - 1) % songs.length === -1) {
-        await setCurrentSong(songs[songs.length - 1]);
-        activeLibraryHandler(songs[songs.length - 1]);
+      if (songInfo.currentTime <= 10) {
+        if ((currentIndex - 1) % songs.length === -1) {
+          await setCurrentSong(songs[songs.length - 1]);
+          activeLibraryHandler(songs[songs.length - 1]);
+        } else {
+          await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
+          activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
+        }
       } else {
-        await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
-        activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
+        audioRef.current.currentTime = 0;
+        setSongInfo({ ...songInfo, currentTime: 0, animationPercentage: 0 });
       }
     }
     if (isPlaying) audioRef.current.play();
