@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import LibrarySong from "./LibrarySong";
 // import Backdrop from "../shared/UIElements/Backdrop";
-import { SongInterface } from "../shared/interfaces/interfaces";
+import { SongInterface, SongInfo } from "../shared/interfaces/interfaces";
 
 interface LibraryInterface {
   songs: SongInterface[];
@@ -13,6 +13,8 @@ interface LibraryInterface {
   libraryStatus: boolean;
   backdropStatus: boolean;
   setIsPlaying: (setIsPlaying: boolean) => void;
+  songInfo: SongInfo;
+  setSongInfo: (songInfo: SongInfo) => void;
 }
 
 const Library: React.FC<LibraryInterface> = ({
@@ -23,7 +25,9 @@ const Library: React.FC<LibraryInterface> = ({
   setSongs,
   libraryStatus,
   backdropStatus,
-  setIsPlaying
+  setIsPlaying,
+  songInfo,
+  setSongInfo
 }) => {
   const content = (
     <React.Fragment>
@@ -41,6 +45,8 @@ const Library: React.FC<LibraryInterface> = ({
               audioRef={audioRef}
               isPlaying={isPlaying}
               setIsPlaying={setIsPlaying}
+              songInfo={songInfo}
+              setSongInfo={setSongInfo}
             />
           ))}
         </div>

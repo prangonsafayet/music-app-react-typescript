@@ -1,8 +1,8 @@
 import React from "react";
-import {SongInterface} from "../shared/interfaces/interfaces"
+import { SongInterface, SongInfo } from "../shared/interfaces/interfaces";
 //import { playAudio } from "../utils";
 
-interface LibrarySongInterface{
+interface LibrarySongInterface {
   song: SongInterface;
   songs: SongInterface[];
   setCurrentSong: (setCurrentSong: SongInterface) => void;
@@ -10,6 +10,8 @@ interface LibrarySongInterface{
   isPlaying: boolean;
   setSongs: (setSongs: SongInterface[]) => void;
   setIsPlaying: (setIsPlaying: boolean) => void;
+  songInfo: SongInfo;
+  setSongInfo: (songInfo: SongInfo) => void;
 }
 
 const LibrarySong: React.FC<LibrarySongInterface> = ({
@@ -19,12 +21,13 @@ const LibrarySong: React.FC<LibrarySongInterface> = ({
   audioRef,
   isPlaying,
   setSongs,
-  setIsPlaying
+  setIsPlaying,
+  songInfo,
+  setSongInfo,
 }) => {
   const songSelectHandler = async () => {
     //const selectedSong = songs.filter((state) => state.id === song.id);
-    
-    
+
     await setCurrentSong(song);
     const newSongs = songs.map((newSong: any) => {
       if (newSong.id === song.id) {
@@ -39,16 +42,17 @@ const LibrarySong: React.FC<LibrarySongInterface> = ({
         };
       }
     });
-    
+
     setSongs(newSongs);
-    
+
     audioRef.current.play();
-    if(!isPlaying){
+    if (!isPlaying) {
       setIsPlaying(!isPlaying);
+    } else {
+      audioRef.current.currentTime = 0;
+      setSongInfo({ ...songInfo, currentTime: 0, animationPercentage: 0 });
     }
-    
-    console.log(isPlaying);
-      
+
     // if (isPlaying) audioRef.current.play();
     // console.log("a")
     //playAudio(isPlaying, audioRef);

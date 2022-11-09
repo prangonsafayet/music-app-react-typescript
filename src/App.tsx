@@ -64,6 +64,8 @@ function App() {
         libraryStatus={libraryStatus}
         backdropStatus={backdropStatus}
         setIsPlaying={setIsPlaying}
+        songInfo={songInfo}
+        setSongInfo={setSongInfo}
       />
       <Song currentSong={currentSong} />
       <Player

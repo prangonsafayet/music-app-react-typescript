@@ -68,9 +68,9 @@ const Player: React.FC<PlayerInterface> = ({
     setSongInfo({ ...songInfo, currentTime: e.target.value });
   };
 
-  const skipTrackHandler = async (direction: any) => {
+  const skipTrackHandler = async (direction: string) => {
     let currentIndex = songs.findIndex(
-      (song: any) => song.id === currentSong.id
+      (song: SongInterface) => song.id === currentSong.id
     );
     if (direction === "skip-forward") {
       await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
