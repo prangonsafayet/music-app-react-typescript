@@ -12,6 +12,7 @@ interface LibraryInterface {
   setSongs: (setSongs: SongInterface[]) => void;
   libraryStatus: boolean;
   backdropStatus: boolean;
+  setIsPlaying: (setIsPlaying: boolean) => void;
 }
 
 const Library: React.FC<LibraryInterface> = ({
@@ -22,6 +23,7 @@ const Library: React.FC<LibraryInterface> = ({
   setSongs,
   libraryStatus,
   backdropStatus,
+  setIsPlaying
 }) => {
   const content = (
     <React.Fragment>
@@ -38,6 +40,7 @@ const Library: React.FC<LibraryInterface> = ({
               key={song.id}
               audioRef={audioRef}
               isPlaying={isPlaying}
+              setIsPlaying={setIsPlaying}
             />
           ))}
         </div>

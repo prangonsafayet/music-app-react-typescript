@@ -63,6 +63,7 @@ function App() {
         isPlaying={isPlaying}
         libraryStatus={libraryStatus}
         backdropStatus={backdropStatus}
+        setIsPlaying={setIsPlaying}
       />
       <Song currentSong={currentSong} />
       <Player

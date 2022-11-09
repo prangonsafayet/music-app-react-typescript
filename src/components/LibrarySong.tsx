@@ -9,6 +9,7 @@ interface LibrarySongInterface{
   audioRef: any;
   isPlaying: boolean;
   setSongs: (setSongs: SongInterface[]) => void;
+  setIsPlaying: (setIsPlaying: boolean) => void;
 }
 
 const LibrarySong: React.FC<LibrarySongInterface> = ({
@@ -18,9 +19,12 @@ const LibrarySong: React.FC<LibrarySongInterface> = ({
   audioRef,
   isPlaying,
   setSongs,
+  setIsPlaying
 }) => {
   const songSelectHandler = async () => {
     //const selectedSong = songs.filter((state) => state.id === song.id);
+    
+    
     await setCurrentSong(song);
     const newSongs = songs.map((newSong: any) => {
       if (newSong.id === song.id) {
@@ -35,8 +39,18 @@ const LibrarySong: React.FC<LibrarySongInterface> = ({
         };
       }
     });
+    
     setSongs(newSongs);
-    if (isPlaying) audioRef.current.play();
+    
+    audioRef.current.play();
+    if(!isPlaying){
+      setIsPlaying(!isPlaying);
+    }
+    
+    console.log(isPlaying);
+      
+    // if (isPlaying) audioRef.current.play();
+    // console.log("a")
     //playAudio(isPlaying, audioRef);
   };
   return (
