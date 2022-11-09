@@ -4,7 +4,7 @@
   left: 0;
   width: 20rem;
   height: 100%;
-  background: white;
+  background: #fff;
   // box-shadow: 2px 2px 50px rgb(197, 197, 197);
   overflow: scroll;
   transform: translateX(-100%);
@@ -12,6 +12,16 @@
   opacity: 0;
   h2 {
     padding: 2rem;
+  }
+  
+  
+}
+.library.dark-mode{
+  background: #000;
+  .library-song {
+    &:hover {
+      background-color: rgb(159, 206, 231);
+    }
   }
 }
 .library-song {
@@ -59,6 +69,7 @@
   transform: translateX(0%);
   z-index: 11;
   opacity: 1;
+  
 }
 @media screen and (max-width: 768px) {
   .library {

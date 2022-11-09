@@ -15,6 +15,8 @@ interface LibraryInterface {
   setIsPlaying: (setIsPlaying: boolean) => void;
   songInfo: SongInfo;
   setSongInfo: (songInfo: SongInfo) => void;
+  isDarkMode: boolean;
+  setIsDarkMode: (setIsDarkMode: boolean) => void;
 }
 
 const Library: React.FC<LibraryInterface> = ({
@@ -27,12 +29,14 @@ const Library: React.FC<LibraryInterface> = ({
   backdropStatus,
   setIsPlaying,
   songInfo,
-  setSongInfo
+  setSongInfo,
+  isDarkMode,
+  setIsDarkMode
 }) => {
   const content = (
     <React.Fragment>
       
-      <div className={`library ${libraryStatus ? "active-library" : ""} `}>
+      <div className={`library${libraryStatus ? " active-library" : ""}${isDarkMode ? " dark-mode" : ""}`}>
         <h2>Library</h2>
         <div className="library-songs">
           {songs.map((song: any) => (

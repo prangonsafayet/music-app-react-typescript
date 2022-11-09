@@ -8,6 +8,7 @@ import Nav from "./components/Nav";
 import Backdrop from "./shared/UIElements/Backdrop";
 
 function App() {
+  const [isDarkMode, setIsDarkMode] = useState(() => false);
   const [songs, setSongs] = useState(data());
   const [currentSong, setCurrentSong] = useState(songs[0]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -40,7 +41,7 @@ function App() {
     if (isPlaying) audioRef.current.play();
   };
   return (
-    <div className={`App ${libraryStatus ? "library-active" : ""}`}>
+    <div className={`App${libraryStatus ? " library-active" : ""}${isDarkMode ? " dark-mode" : ""}`}>
       {backdropStatus ? (
         <Backdrop
           libraryStatus={libraryStatus}
@@ -54,6 +55,8 @@ function App() {
         setLibraryStatus={setLibraryStatus}
         backdropStatus={backdropStatus}
         setBackdropStatus={setBackdropStatus}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
       />
       <Library
         audioRef={audioRef}
@@ -66,6 +69,8 @@ function App() {
         setIsPlaying={setIsPlaying}
         songInfo={songInfo}
         setSongInfo={setSongInfo}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
       />
       <Song currentSong={currentSong} />
       <Player

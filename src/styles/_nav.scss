@@ -10,9 +10,27 @@ nav {
     border: 2px solid rgb(65, 65, 65);
     padding: 0.5rem;
     transition: all 0.3s ease;
+    
     &:hover {
       background: rgb(65, 65, 65);
       color: white;
+    }
+  }
+  .library-button{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border: none;
+    padding: 0;
+    width: 90px;
+    justify-content: space-evenly;
+    span{
+      font-size: 14px;
+      align-self: center;
+    }
+    &:hover {
+      background: transparent;
+      color: initial;
     }
   }
 }
