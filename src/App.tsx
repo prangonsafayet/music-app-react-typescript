@@ -26,6 +26,12 @@ function App() {
     return size;
   };
   const [width] = useWindowSize();
+  let responsive = false;
+  if (width < 768) {
+    responsive = true;
+  } else {
+    responsive = false;
+  }
   const [isDarkMode, setIsDarkMode] = useState(() => false);
   const [songs, setSongs] = useState(data());
   const [currentSong, setCurrentSong] = useState(songs[0]);
@@ -34,13 +40,7 @@ function App() {
   const [libraryStatus, setLibraryStatus] = useState(false);
   const [backdropStatus, setBackdropStatus] = useState(false);
   // const [responsive, setResponsive] = useState(false);
-  let responsive=false;
-  if(width<500){
-    responsive=true;
-  }
-  else{
-    responsive=false;
-  }
+
   const timeUpdateHandler = (e: any) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;

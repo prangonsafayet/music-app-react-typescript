@@ -24,12 +24,18 @@
     }
   }
 }
+@keyframes mini-player-animation {
+  from {transform: translateY(100%);}
+  to {transform: translateY(0%);}
+}
 .library{
   .player.mini-player{
     position: sticky;
     bottom: 0;
     width: 100%;
     background: #fff;
+    animation-name: mini-player-animation;
+    animation-duration: 0.5s;
   }
 }
 .library.dark-mode{

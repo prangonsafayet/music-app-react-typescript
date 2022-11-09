@@ -70,7 +70,7 @@ const Library: React.FC<LibraryInterface> = ({
             />
           ))}
         </div>
-        {responsive ? (
+        {responsive && isPlaying ? (
           <Player
             audioRef={audioRef}
             isPlaying={isPlaying}
