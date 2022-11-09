@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import LibrarySong from "./LibrarySong";
 // import Backdrop from "../shared/UIElements/Backdrop";
+import Player from "./Player";
 import { SongInterface, SongInfo } from "../shared/interfaces/interfaces";
 
 interface LibraryInterface {
   songs: SongInterface[];
+  currentSong: SongInterface;
   setCurrentSong: (setCurrentSong: SongInterface) => void;
   audioRef: any;
   isPlaying: boolean;
@@ -19,10 +21,12 @@ interface LibraryInterface {
   setSongInfo: (songInfo: SongInfo) => void;
   isDarkMode: boolean;
   setIsDarkMode: (setIsDarkMode: boolean) => void;
+  responsive: boolean;
 }
 
 const Library: React.FC<LibraryInterface> = ({
   songs,
+  currentSong,
   setCurrentSong,
   audioRef,
   isPlaying,
@@ -36,6 +40,7 @@ const Library: React.FC<LibraryInterface> = ({
   setSongInfo,
   isDarkMode,
   setIsDarkMode,
+  responsive,
 }) => {
   const closeLibraryHandler = () => {
     setLibraryStatus(!libraryStatus);
@@ -65,6 +70,22 @@ const Library: React.FC<LibraryInterface> = ({
             />
           ))}
         </div>
+        {responsive ? (
+          <Player
+            audioRef={audioRef}
+            isPlaying={isPlaying}
+            setIsPlaying={setIsPlaying}
+            currentSong={currentSong}
+            setCurrentSong={setCurrentSong}
+            songs={songs}
+            setSongs={setSongs}
+            songInfo={songInfo}
+            setSongInfo={setSongInfo}
+            responsive={responsive}
+          />
+        ) : (
+          ""
+        )}
       </div>
     </React.Fragment>
   );

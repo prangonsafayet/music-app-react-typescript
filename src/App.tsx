@@ -1,4 +1,9 @@
-import React, { MutableRefObject, useRef, useState } from "react";
+import React, {
+  MutableRefObject,
+  useRef,
+  useState,
+  useLayoutEffect,
+} from "react";
 import Player from "./components/Player";
 import Song from "./components/Song";
 import "./styles/app.scss";
@@ -8,6 +13,19 @@ import Nav from "./components/Nav";
 import Backdrop from "./shared/UIElements/Backdrop";
 
 function App() {
+  const useWindowSize = () => {
+    const [size, setSize] = useState([0, 0]);
+    useLayoutEffect(() => {
+      function updateSize() {
+        setSize([window.innerWidth]);
+      }
+      window.addEventListener("resize", updateSize);
+      updateSize();
+      return () => window.removeEventListener("resize", updateSize);
+    }, []);
+    return size;
+  };
+  const [width] = useWindowSize();
   const [isDarkMode, setIsDarkMode] = useState(() => false);
   const [songs, setSongs] = useState(data());
   const [currentSong, setCurrentSong] = useState(songs[0]);
@@ -15,6 +33,14 @@ function App() {
   const audioRef = useRef() as MutableRefObject<HTMLAudioElement>;
   const [libraryStatus, setLibraryStatus] = useState(false);
   const [backdropStatus, setBackdropStatus] = useState(false);
+  // const [responsive, setResponsive] = useState(false);
+  let responsive=false;
+  if(width<500){
+    responsive=true;
+  }
+  else{
+    responsive=false;
+  }
   const timeUpdateHandler = (e: any) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
@@ -41,7 +67,11 @@ function App() {
     if (isPlaying) audioRef.current.play();
   };
   return (
-    <div className={`App${libraryStatus ? " library-active" : ""}${isDarkMode ? " dark-mode" : ""}`}>
+    <div
+      className={`App${libraryStatus ? " library-active" : ""}${
+        isDarkMode ? " dark-mode" : ""
+      }`}
+    >
       {backdropStatus ? (
         <Backdrop
           libraryStatus={libraryStatus}
@@ -62,6 +92,7 @@ function App() {
         audioRef={audioRef}
         songs={songs}
         setSongs={setSongs}
+        currentSong={currentSong}
         setCurrentSong={setCurrentSong}
         isPlaying={isPlaying}
         libraryStatus={libraryStatus}
@@ -73,6 +104,7 @@ function App() {
         setSongInfo={setSongInfo}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
+        responsive={responsive}
       />
       <Song currentSong={currentSong} />
       <Player
@@ -85,6 +117,7 @@ function App() {
         setSongs={setSongs}
         songInfo={songInfo}
         setSongInfo={setSongInfo}
+        responsive={responsive}
       />
       <audio
         onTimeUpdate={timeUpdateHandler}

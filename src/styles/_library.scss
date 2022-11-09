@@ -24,6 +24,19 @@
     }
   }
 }
+.library{
+  .player.mini-player{
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+  }
+}
+.library.dark-mode{
+  .player.mini-player{
+    background: #000;
+  }
+}
 .library-song {
   display: flex;
   align-items: center;

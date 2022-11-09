@@ -18,6 +18,7 @@ interface PlayerInterface {
   setSongs: (songs: SongInterface[]) => void;
   songs: SongInterface[];
   setSongInfo: (songInfo: SongInfo) => void;
+  responsive: boolean;
 }
 const Player: React.FC<PlayerInterface> = ({
   currentSong,
@@ -29,6 +30,7 @@ const Player: React.FC<PlayerInterface> = ({
   setSongs,
   songs,
   setSongInfo,
+  responsive
 }) => {
   const activeLibraryHandler = (nextPrev: SongInterface) => {
     const newSongs = songs.map((newSong: SongInterface) => {
@@ -99,7 +101,7 @@ const Player: React.FC<PlayerInterface> = ({
   };
 
   return (
-    <div className="player">
+    <div className={`player${responsive?" mini-player":""}`}>
       <div className="time-control">
         <p>{getTime(songInfo.currentTime)}</p>
         <div
@@ -119,6 +121,7 @@ const Player: React.FC<PlayerInterface> = ({
         </div>
         <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
       </div>
+      {responsive? currentSong.name: ""}
       <div className="play-control">
         <FontAwesomeIcon
           onClick={() => skipTrackHandler("skip-back")}
