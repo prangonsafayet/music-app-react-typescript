@@ -1,5 +1,5 @@
 import React from "react";
-import { SongInterface } from "../shared/interfaces";
+import { SongInterface } from "../shared/interfaces/interfaces";
 
 const Song = ({ currentSong }: { currentSong: SongInterface }) => {
   return (

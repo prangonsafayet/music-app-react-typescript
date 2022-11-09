@@ -5,6 +5,7 @@ import "./styles/app.scss";
 import data from "./music/playlist";
 import Library from "./components/Library";
 import Nav from "./components/Nav";
+import Backdrop from "./shared/UIElements/Backdrop";
 
 function App() {
   const [songs, setSongs] = useState(data());
@@ -12,6 +13,7 @@ function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef() as MutableRefObject<HTMLAudioElement>;
   const [libraryStatus, setLibraryStatus] = useState(false);
+  const [backdropStatus, setBackdropStatus] = useState(false);
   const timeUpdateHandler = (e: any) => {
     const current = e.target.currentTime;
     const duration = e.target.duration;
@@ -39,7 +41,20 @@ function App() {
   };
   return (
     <div className={`App ${libraryStatus ? "library-active" : ""}`}>
-      <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
+      {backdropStatus ? (
+        <Backdrop
+          libraryStatus={libraryStatus}
+          setLibraryStatus={setLibraryStatus}
+          backdropStatus={backdropStatus}
+          setBackdropStatus={setBackdropStatus}
+        />
+      ) : null}
+      <Nav
+        libraryStatus={libraryStatus}
+        setLibraryStatus={setLibraryStatus}
+        backdropStatus={backdropStatus}
+        setBackdropStatus={setBackdropStatus}
+      />
       <Library
         audioRef={audioRef}
         songs={songs}
@@ -47,6 +62,7 @@ function App() {
         setCurrentSong={setCurrentSong}
         isPlaying={isPlaying}
         libraryStatus={libraryStatus}
+        backdropStatus={backdropStatus}
       />
       <Song currentSong={currentSong} />
       <Player

@@ -6,8 +6,8 @@ import {
   faAngleLeft,
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { SongInterface } from "../shared/interfaces";
-import { SongInfo } from "../shared/interfaces";
+import { SongInterface } from "../shared/interfaces/interfaces";
+import { SongInfo } from "../shared/interfaces/interfaces";
 interface PlayerInterface {
   currentSong: SongInterface;
   setCurrentSong: (setCurrentSong: SongInterface) => void;

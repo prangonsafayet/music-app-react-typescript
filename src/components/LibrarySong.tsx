@@ -1,5 +1,5 @@
 import React from "react";
-import {SongInterface} from "../shared/interfaces"
+import {SongInterface} from "../shared/interfaces/interfaces"
 //import { playAudio } from "../utils";
 
 interface LibrarySongInterface{
